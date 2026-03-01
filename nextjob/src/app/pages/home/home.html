@@ -1,0 +1,151 @@
+
+<!-- app.component.html -->
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <p class="eyebrow">Career Match</p>
+      <h1 class="title">Find your <em>next</em><br>perfect role</h1>
+      <div class="divider"></div>
+    </div>
+
+    <form class="form" [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+
+      <!-- Years of Experience -->
+      <div class="field">
+        <label class="label">Years of Experience</label>
+        <div class="input-wrap">
+          <input
+            type="number"
+            formControlName="experience"
+            min="0" max="50"
+            placeholder="e.g. 4"
+          />
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="field">
+        <label class="label">Tech Stack</label>
+        <div class="tag-grid">
+          <button
+            type="button"
+            *ngFor="let tech of techOptions"
+            class="tag"
+            [class.active]="isTechSelected(tech)"
+            (click)="toggleTech(tech)"
+          >{{ tech }}</button>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="field">
+        <label class="label">Location Preference</label>
+        <div class="select-wrap">
+          <select formControlName="location">
+            <option value="">Select a location…</option>
+            <option *ngFor="let loc of locationOptions" [value]="loc">{{ loc }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Work Mode -->
+      <div class="field">
+        <label class="label">Work Mode</label>
+        <div class="radio-group">
+          <label class="radio-pill" *ngFor="let mode of workModeOptions">
+            <input type="radio" formControlName="workMode" [value]="mode" />
+            <span class="pill-label">{{ mode }}</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Visa -->
+      <div class="field">
+        <label class="label">Visa Requirement</label>
+        <div class="toggle-row">
+          <div class="toggle-text">
+            <p>Visa sponsorship needed</p>
+            <span>Toggle on if you require employer sponsorship</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" formControlName="visa" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-row">
+        <button type="submit" class="btn-submit" [disabled]="jobForm.invalid">
+          Find Jobs →
+        </button>
+        <p class="hint">We'll match you with roles that fit your profile</p>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- JOB Results  -->
+
+<!-- <div class="results" *ngIf="jobs.length">
+
+  <h2>Available Jobs</h2>
+
+  <div class="job-card" *ngFor="let job of jobs">
+
+    <h3>{{ job.job_title }}</h3>
+    <p><strong>Company:</strong> {{ job.employer_name }}</p>
+    <p><strong>Location:</strong> {{ job.job_city }}</p>
+    <p><strong>Type:</strong> {{ job.job_employment_type }}</p>
+    <p><strong>Salary:</strong> 
+      {{ job.job_min_salary }} - {{ job.job_max_salary }}
+      {{ job.job_salary_period }}
+    </p>
+    <p *ngIf="job.job_is_remote">🌍 Remote</p>
+
+    <a [href]="job.job_apply_link" target="_blank">
+      Apply Now →
+    </a>
+
+  </div>
+
+</div> -->
+
+<div class="job-results" *ngIf="jobs.length">
+
+  <h2 class="results-title">Available Jobs</h2>
+
+  <div class="results-grid">
+    <div class="job-card" *ngFor="let job of jobs">
+
+      <h3 class="job-title">{{ job.job_title }}</h3>
+
+      <p><strong>Company:</strong> {{ job.employer_name }}</p>
+      <p><strong>Location:</strong> {{ job.job_city }}</p>
+      <p><strong>Type:</strong> {{ job.job_employment_type }}</p>
+      <p>
+        <strong>Salary:</strong>
+        {{ job.job_min_salary }} - {{ job.job_max_salary }}
+        {{ job.job_salary_period }}
+      </p>
+
+      <p class="remote-badge" *ngIf="job.job_is_remote">🌍 Remote</p>
+
+      <a class="apply-btn"
+         [href]="job.job_apply_link"
+         target="_blank">
+         Apply Now →
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<p *ngIf="!isLoading && jobs.length === 0">
+  No jobs found.
+</p>
