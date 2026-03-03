@@ -1,0 +1,49 @@
+<div class="back-button" (click)="goBack()">
+  ← Back
+</div>
+<div class="job-results" *ngIf="jobs.length > 0">
+
+  <h2 class="results-title">Available Jobs</h2>
+
+  <div class="results-grid">
+    <div class="job-card" *ngFor="let job of jobs">
+
+      <h3 class="job-title">{{ job.title }}</h3>
+
+      <p><strong>Company:</strong> {{ job.company }}</p>
+      <p><strong>Location:</strong> {{ job.location }}</p>
+      <p><strong>Type:</strong> {{ job.employmentType }}</p>
+
+      <p>
+        <strong>Salary:</strong>
+        {{ job.salary }}
+      </p>
+
+      <p class="remote-badge" *ngIf="job.remote">
+        🌍 Remote
+      </p>
+
+      <a class="apply-btn"
+         (click)="applyToJob(job)">
+         Apply Now →
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<p *ngIf="jobs.length === 0">
+  No jobs found.
+</p>
+
+<div class="modal-overlay" *ngIf="showModal && selectedJob">
+  <div class="modal">
+    <h3>Did you apply to this job?</h3>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" (click)="closeModal()">No</button>
+      <button class="btn-primary" (click)="confirmApplication()">Yes</button>
+    </div>
+  </div>
+</div>

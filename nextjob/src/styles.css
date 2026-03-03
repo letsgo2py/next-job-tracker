@@ -1,6 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=Epilogue:wght@300;400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --bg:          #f5f3ef;
+  --card:        #ffffff;
+  --border:      #e4e1da;
+  --border-focus:#1a1a1a;
+  --text:        #1a1a1a;
+  --muted:       #888580;
+  --tag-bg:      #1a1a1a;
+  --tag-text:    #ffffff;
+  --btn:         #1a1a1a;
+  --btn-hover:   #333333;
+  --shadow:      0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.05);
+  --radius-sm:   8px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Epilogue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }

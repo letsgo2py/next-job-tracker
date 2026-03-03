@@ -1,0 +1,58 @@
+<div *ngIf="isLoading" class="dashboard-loader">
+  Loading dashboard...
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="dashboard-page">
+  
+    <h1 class="dashboard-title">Application Dashboard</h1>
+  
+    <div class="stats-grid">
+  
+      <div class="stat-card total">
+        <h2>{{ totalApplied }}</h2>
+        <p>Total Applied</p>
+      </div>
+  
+      <div class="stat-card rejected">
+        <h2>{{ rejected }}</h2>
+        <p>Rejected</p>
+      </div>
+  
+      <div class="stat-card accepted">
+        <h2>{{ accepted }}</h2>
+        <p>Accepted</p>
+      </div>
+  
+      <div class="stat-card pending">
+        <h2>{{ pending }}</h2>
+        <p>Pending</p>
+      </div>
+  
+    </div>
+  
+  </div>
+</div>
+
+
+<div class="applications-section">
+  <h2 class="applications-title">Your Applications</h2>
+
+  <div *ngIf="applications.length === 0" class="empty-state">
+    You haven't applied to any jobs yet.
+  </div>
+
+  <div class="applications-grid">
+    <div class="application-card" *ngFor="let app of applications">
+      <div class="app-header">
+        <h3>{{ app.position }}</h3>
+        <span class="status" [ngClass]="app.status">
+          {{ app.status | titlecase }}
+        </span>
+      </div>
+
+      <p class="company">{{ app.company }}</p>
+      <p class="date">Applied on {{ app.appliedDate | date }}</p>
+    </div>
+  </div>
+</div>

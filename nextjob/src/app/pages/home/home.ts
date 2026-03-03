@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeService } from '../../services/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
 
 export class HomeComponent {
@@ -25,7 +26,8 @@ export class HomeComponent {
   workModeOptions = ['Remote','Hybrid','On-Site'];
 
   constructor(private fb: FormBuilder,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private router: Router
   ) {
     this.jobForm = this.fb.group({
       experience: [null, [Validators.required, Validators.min(0)]],
@@ -54,9 +56,11 @@ export class HomeComponent {
 
       this.homeService.searchJobs(payload).subscribe({
         next: (response) => {
-          console.log('API Response:', response);
-          this.jobs = response.data;
           this.isLoading = false;
+          console.log("RESPONSE OF API: ", response);
+          this.router.navigate(['/results'], {
+            state: { jobs: response }
+          });
         },
         error: (error) => {
           console.error('API Error:', error);
@@ -65,4 +69,5 @@ export class HomeComponent {
       });
     }
   }
+
 }

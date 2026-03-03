@@ -1,0 +1,36 @@
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 60px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-links span {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-links span:hover {
+  color: #0b1de1;
+}

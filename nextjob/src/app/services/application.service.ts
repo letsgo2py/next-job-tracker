@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class ApplicationService {
 
-  private apiUrl = 'http://localhost:3000/api/jobs'; 
+  private apiUrl = 'http://localhost:3000/api/applications';
 
   constructor(private http: HttpClient) {}
 
-  searchJobs(payload: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/search`, payload);
+  applyToJob(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/apply`, data);
   }
 }

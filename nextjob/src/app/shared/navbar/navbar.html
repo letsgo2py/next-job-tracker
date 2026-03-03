@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="logo" (click)="goHome()">
+    NextJob
+  </div>
+
+  <div class="nav-links" *ngIf="authService.isLoggedIn()">
+    <span (click)="goDashboard()">
+      <mat-icon>dashboard</mat-icon>
+    </span>
+    <span (click)="goHome()">
+      <mat-icon>home</mat-icon>
+    </span>
+    <span (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </span>
+  </div>
+</nav>

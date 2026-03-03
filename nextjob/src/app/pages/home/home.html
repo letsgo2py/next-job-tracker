@@ -1,5 +1,4 @@
 
-<!-- app.component.html -->
 <div class="page">
   <div class="card">
 
@@ -10,7 +9,7 @@
     </div>
 
     <form class="form" [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-
+ 
       <!-- Years of Experience -->
       <div class="field">
         <label class="label">Years of Experience</label>
@@ -88,64 +87,7 @@
   </div>
 </div>
 
-
-<!-- JOB Results  -->
-
-<!-- <div class="results" *ngIf="jobs.length">
-
-  <h2>Available Jobs</h2>
-
-  <div class="job-card" *ngFor="let job of jobs">
-
-    <h3>{{ job.job_title }}</h3>
-    <p><strong>Company:</strong> {{ job.employer_name }}</p>
-    <p><strong>Location:</strong> {{ job.job_city }}</p>
-    <p><strong>Type:</strong> {{ job.job_employment_type }}</p>
-    <p><strong>Salary:</strong> 
-      {{ job.job_min_salary }} - {{ job.job_max_salary }}
-      {{ job.job_salary_period }}
-    </p>
-    <p *ngIf="job.job_is_remote">🌍 Remote</p>
-
-    <a [href]="job.job_apply_link" target="_blank">
-      Apply Now →
-    </a>
-
-  </div>
-
-</div> -->
-
-<div class="job-results" *ngIf="jobs.length">
-
-  <h2 class="results-title">Available Jobs</h2>
-
-  <div class="results-grid">
-    <div class="job-card" *ngFor="let job of jobs">
-
-      <h3 class="job-title">{{ job.job_title }}</h3>
-
-      <p><strong>Company:</strong> {{ job.employer_name }}</p>
-      <p><strong>Location:</strong> {{ job.job_city }}</p>
-      <p><strong>Type:</strong> {{ job.job_employment_type }}</p>
-      <p>
-        <strong>Salary:</strong>
-        {{ job.job_min_salary }} - {{ job.job_max_salary }}
-        {{ job.job_salary_period }}
-      </p>
-
-      <p class="remote-badge" *ngIf="job.job_is_remote">🌍 Remote</p>
-
-      <a class="apply-btn"
-         [href]="job.job_apply_link"
-         target="_blank">
-         Apply Now →
-      </a>
-
-    </div>
-  </div>
-
+<div class="full-loader" *ngIf="isLoading">
+  <div class="spinner"></div>
+  <p>Fetching Jobs...</p>
 </div>
-
-<p *ngIf="!isLoading && jobs.length === 0">
-  No jobs found.
-</p>
