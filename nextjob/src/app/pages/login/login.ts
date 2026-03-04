@@ -9,7 +9,7 @@ import { ToastComponent } from '../../shared/toast/toast';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ToastComponent],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
@@ -28,7 +28,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    console.log("LoginComponent loaded");
+
+  }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -38,6 +41,16 @@ export class LoginComponent implements OnInit {
 
   toggleMode() {
     this.isRegisterMode = !this.isRegisterMode;
+    console.log("register MODe: in toggle", this.isRegisterMode);
+  }
+
+  onSubmit(event?: Event) {
+    console.log("Form submitted");
+    if (this.isRegisterMode) {
+      this.register();
+    } else {
+      this.login();
+    }
   }
 
   login() {
@@ -80,6 +93,8 @@ export class LoginComponent implements OnInit {
       next: () => {
         this.showNotification('Registration successful! Please login now.', 'success');
         this.isRegisterMode = false;
+        console.log("Successfully saved user")
+        console.log("isRegisterMode", this.isRegisterMode);
       },
       error: () => alert('Registration failed')
     });

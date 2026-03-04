@@ -73,6 +73,7 @@
   font-size: 14px;
   font-weight: 600;
   transition: background 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
 }
 
 .apply-btn:hover {
@@ -92,25 +93,6 @@
   .job-results .job-card {
     padding: 18px;
   }
-}
-
-.back-button {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  cursor: pointer;
-  font-size: 22px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #333;
-  transition: 0.2s ease;
-}
-
-.back-button:hover {
-  color: #0b1de1;
-  transform: translateX(-3px);
 }
 
 /* CONFIRM MODAL  */

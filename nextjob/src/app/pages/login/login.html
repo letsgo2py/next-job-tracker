@@ -10,7 +10,7 @@
 
       <h2>{{ isRegisterMode ? 'Register' : 'Login' }}</h2>
 
-      <form (ngSubmit)="isRegisterMode ? register() : login()">
+      <form (ngSubmit)="onSubmit($event)">
 
         <input 
           *ngIf="isRegisterMode"

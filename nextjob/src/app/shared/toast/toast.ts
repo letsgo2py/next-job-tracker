@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-toast',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.css']
+  templateUrl: './toast.html',
+  styleUrls: ['./toast.css']
 })
 export class ToastComponent {
 
